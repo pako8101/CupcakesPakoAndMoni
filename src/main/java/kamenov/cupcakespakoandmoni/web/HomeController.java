@@ -13,6 +13,10 @@ public class HomeController {
 @GetMapping("/about")
 public String about() {
     return "about";
+}@GetMapping("/products")
+public String products() {
+    return "products";
 }
+
 
 }

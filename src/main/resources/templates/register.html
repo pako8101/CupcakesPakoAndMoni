@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="bg">
+<head th:replace="fragments/commons::head">
+    <title>Регистрация в Кексчетата на Пако и Мони</title></head>
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/reset-css.css">
+<link rel="stylesheet" href="/css/register.css">
+<body >
+<div th:replace="fragments/commons::nav"></div>
 
+<form>
+    <h1>Create an Account</h1>
+    <label>
+        <input type="text" placeholder="Username" required>
+    </label>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <input type="password" placeholder="Confirm Password" required>
+    <button type="submit">Register</button>
+</form>
+
+<footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
 </body>
 </html>

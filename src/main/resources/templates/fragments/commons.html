@@ -8,43 +8,47 @@
     <title>Кексчетата на Пако и Мони</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/footer.css">
 
 </head>
-<body>
-<header th:fragment="nav">
-    <nav>
+<body >
+
+<header  th:fragment="nav">
+    <div th:class="nav-back">
+    <nav >
         <ul class="navbar">
-            <li><a href="index.html">Начало</a></li>
-            <li><a href="about.html">За нас</a></li>
-            <li><a href="products.html">Кексчета</a></li>
-            <li><a href="order.html">Поръчай</a></li>
-            <li><a href="cart.html">Кошница</a></li>
-            <li><a href="login.html">Вход</a></li>
-            <li><a href="register.html">Регистрация</a></li>
+            <li><a href="/">Начало</a></li>
+            <li><a href="/about">За нас</a></li>
+            <li><a href="/products">Кексчета</a></li>
+            <li><a href="/order">Поръчай</a></li>
+            <li><a href="/cart">Кошница</a></li>
+            <li><a href="/user/login">Вход</a></li>
+            <li><a href="/user/register">Регистрация</a></li>
         </ul>
     </nav>
+    </div>
 </header>
 
 
 <footer th:fragment="footer" id="footer">
     <ul>
         <li class="selected">
-            <a th:href="index.html">home</a>
+            <a th:href="@{/index}">home</a>
         </li>
         <li>
-            <a th:href="products.html">our cupcakes</a>
+            <a th:href="@{/products}">our cupcakes</a>
         </li>
         <li>
-            <a th:href="history.html">history</a>
+            <a th:href="@{/history}">history</a>
         </li>
         <li>
             <a th:href="@{/about}">about</a>
         </li>
         <li>
-            <a th:href="order.html">blog</a>
+            <a th:href="@{/order}">blog</a>
         </li>
         <li>
-            <a th:href="contact.html">contact</a>
+            <a th:href="@{/contact}">contact</a>
         </li>
     </ul>
     <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>

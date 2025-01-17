@@ -32,13 +32,14 @@ public class SecurityConfig {
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll().
                                         requestMatchers("/",
+                                                "/index",
                                                 "/about",
-                                                "/cupcakes",
+                                                "/products",
                                                 "/cupcake",
                                                 "/delete/**",
                                                 "/edit/**",
-                                                "/users/login-error",
-                                                "/users/login", "/users/register"
+                                                "/user/login-error",
+                                                "/user/login", "/user/register"
 
                                         )
                                         .permitAll()
@@ -54,17 +55,17 @@ public class SecurityConfig {
                 .formLogin(
                         (formLogin) ->
                                 formLogin.
-                                        loginPage("/users/login").
+                                        loginPage("/user/login").
                                         usernameParameter(
                                                 UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                                         passwordParameter(
                                                 UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                                         defaultSuccessUrl("/", true).
-                                        failureForwardUrl("/users/login-error")
+                                        failureForwardUrl("/user/login-error")
 
                 )
                 .logout((logout) ->
-                        logout.logoutUrl("/users/logout").
+                        logout.logoutUrl("/user/logout").
                                 logoutSuccessUrl("/").//go to homepage after logout
                                 invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")

@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/background-about.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #444;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #ff7f50;
+}
+
+.about {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.about h1 {
+    font-size: 3em;
+    animation: slideIn 1.5s ease-out;
+}
+
+.about p {
+    font-size: 1.2em;
+    animation: slideIn 1.5s ease-out 0.5s;
+}
+
+.about img {
+    width: 70%;
+    max-width: 500px;
+    margin-top: 20px;
+    animation: slideIn 1.5s ease-out 1s;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}

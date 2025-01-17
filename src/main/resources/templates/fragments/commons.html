@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html  lang="bg" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Кексчетата на Пако и Мони</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/reset-css.css">
+
 </head>
 <body>
+<header th:fragment="nav">
+    <nav>
+        <ul class="navbar">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="about.html">За нас</a></li>
+            <li><a href="products.html">Кексчета</a></li>
+            <li><a href="order.html">Поръчай</a></li>
+            <li><a href="cart.html">Кошница</a></li>
+            <li><a href="login.html">Вход</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+        </ul>
+    </nav>
+</header>
 
+
+<footer th:fragment="footer" id="footer">
+    <ul>
+        <li class="selected">
+            <a th:href="index.html">home</a>
+        </li>
+        <li>
+            <a th:href="products.html">our cupcakes</a>
+        </li>
+        <li>
+            <a th:href="history.html">history</a>
+        </li>
+        <li>
+            <a th:href="about.html">about</a>
+        </li>
+        <li>
+            <a th:href="order.html">blog</a>
+        </li>
+        <li>
+            <a th:href="contact.html">contact</a>
+        </li>
+    </ul>
+    <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>
+</footer>
 </body>
 </html>

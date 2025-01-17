@@ -1,25 +1,9 @@
 <!DOCTYPE html>
 <html lang="bg">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кексчетата на Пако и Мони</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header>
-    <nav>
-        <ul class="navbar">
-            <li><a href="index.html">Начало</a></li>
-            <li><a href="about.html">За нас</a></li>
-            <li><a href="products.html">Кексчета</a></li>
-            <li><a href="order.html">Поръчай</a></li>
-            <li><a href="cart.html">Кошница</a></li>
-            <li><a href="login.html">Вход</a></li>
-            <li><a href="register.html">Регистрация</a></li>
-        </ul>
-    </nav>
-</header>
+<head th:replace="fragments/commons::head">
+    <title>Кексчетата на Пако и Мони</title></head>
+<body >
+<div th:replace="fragments/commons::nav"></div>
 
 <main>
     <section class="hero">
@@ -55,8 +39,6 @@
     </section>
 </main>
 
-<footer>
-    <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>
-</footer>
+<div th:replace="fragments/commons::footer" id="footer"></div>
 </body>
 </html>

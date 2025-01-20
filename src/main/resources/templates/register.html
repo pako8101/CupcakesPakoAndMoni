@@ -8,17 +8,174 @@
 <body >
 <div th:replace="fragments/commons::nav"></div>
 
-<form>
+<form  th:method="POST"
+       th:action="@{/user/register}"
+       th:object="${registerBindingModel}"
+       enctype="multipart/form-data">
     <h1>Create an Account</h1>
-    <label>
-        <input type="text" placeholder="Username" required>
-    </label>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
-    <input type="password" placeholder="Confirm Password" required>
+    <div class="form-group fullName" >
+<!--        th:text="#{nav_bar_full_name}"-->
+        <label for="fullName" >Full Name</label>
+        <input th:field="*{fullName}"
+               th:errorclass="'is-invalid bg-danger'"
+               required minlength="3" maxlength="20"
+               type="text"
+               id="fullName"
+               placeholder="Enter your full name">
+        <small th:each="e :${#fields.errors('fullName')}" th:text="${e}"
+               id="fullNameError" class="invalid-feedback form-text bg-danger rounded">
+            Full name length must be more than 3 characters</small>
+
+    </div>
+    <div class="form-group username">
+<!--        th:text="#{nav_bar_username}"-->
+        <label for="username" >Username</label>
+        <input th:field="*{username}"
+               th:errorclass="'is-invalid alert-danger'"
+               required minlength="3" maxlength="20"
+               type="text" id="username"
+               placeholder="Enter your username">
+        <small th:if="${userExistsError}" id="usernameUniqueError"
+               class=" bg-danger rounded">Username is already occupied</small>
+        <small th:each="e :${#fields.errors('username')}" th:text="${e}"
+               id="usernameError"
+               class="invalid-feedback bg-danger rounded">Username length must be more than 3 characters</small>
+
+
+    </div>
+    <!--        required minlength="3" maxlength="20"-->
+    <div class="form-group password">
+<!--        th:text="#{nav_bar_password}"-->
+        <label for="password" >Password</label>
+        <input th:field="*{password}"
+               th:errorclass="'is-invalid alert-danger'"
+               required minlength="3" maxlength="20"
+               type="password"
+               id="password"
+               name="password"
+               placeholder="Enter your password">
+        <!--                            <small th:if="${#fields.hasErrors('password')}"-->
+        <!--                                   id="passwordError" class="bg-danger text-light rounded invalid-feedback">-->
+        <!--                                Password length must be more than 3 characters long.-->
+        <!--                            </small>-->
+        <small th:each="e :${#fields.errors('password')}" th:text="${e}"
+               id="passwordError" class="invalid-feedback  form-text bg-danger rounded">
+            Password length must be between 3 and 20 characters and passwords should match.</small>
+        <!--                            th:text="#{nav_bar_showPass}"-->
+    </div>
+<!--    th:text="#{nav_bar_re_type_password}"-->
+    <label for="confirmPassword"
+    >Re-type Password:</label>
+    <input th:field="*{confirmPassword}"
+           required minlength="3" maxlength="20"
+           th:errorclass="is-invalid"
+           type="password"
+           id="confirmPassword"
+           name="confirmPassword"
+           placeholder="Confirm password"/>
+    <small th:if="${#fields.hasErrors('confirmPassword')}"
+           id="confirmPasswordHelpInline" class="bg-danger text-light rounded invalid-feedback">
+        Password length must be more than 3 characters long.
+    </small>
+    <label for="show-password" class="field__toggle">
+<!--        th:text="#{nav_bar_show_password}"-->
+        <input style="" type="checkbox" id="show-password" value="yes"
+               class="field__toggle-input" /></label>
+
+    <div class="form-group email">
+<!--        th:text="#{nav_bar_email}"-->
+        <label for="email" >Email Address</label>
+        <input th:field="*{email}"
+               th:errorclass="'is-invalid alert-danger'"
+               type="text"
+               id="email"
+               placeholder="Enter your email address">
+        <small th:each="e :${#fields.errors('email')}" th:text="${e}"
+               id="emailError" class="invalid-feedback form-text bg-danger rounded">
+            Email must be valid.</small>
+        <!--                            <small th:if="${#fields.hasErrors('email')}"-->
+        <!--                                   id="emailError" class="bg-danger text-light rounded invalid-feedback">-->
+        <!--                                Email must be valid.-->
+        <!--                            </small>-->
+    </div>
+    <div class="form-group gender">
+<!--        th:text="#{nav_bar_gender}"-->
+        <label for="gender" >Gender</label>
+        <select required
+                id="gender">
+            <option value="" selected disabled>Select your gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <input type="checkbox"
+                       name="personal_info_agreement"
+                       value="1">
+                <span style="font-size: 12px;">
+                                        &nbsp;<b>By submitting this form,
+                        I accept that the information entered may be
+                        processed by Pako & Moni Cupcakes within corporate purposes only and be kept for 3 years for future articles.</b>
+                                    </span>
+
+            </div>
+        </div>
+    </div><br>
+<!--    <label>-->
+<!--        <input type="text" placeholder="Username" required>-->
+<!--    </label>-->
+<!--    <input type="email" placeholder="Email" required>-->
+<!--    <input type="password" placeholder="Password" required>-->
+<!--    <input type="password" placeholder="Confirm Password" required>-->
     <button type="submit">Register</button>
 </form>
 
 <footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
 </body>
+
+<script type="text/javascript">
+
+
+    var username = document.querySelector("#username");
+    var password = document.querySelector("#password");
+    var confirmPassword = document.querySelector("#confirmPassword");
+    var toggle = document.querySelector("#show-password");
+
+
+    username.value = "";
+    password.value = "";
+    confirmPassword.value = "";
+
+    toggle.addEventListener("click", handleToggleClick, false);
+
+    function handleToggleClick(event) {
+
+        if (this.checked) {
+
+            console.warn("Change input 'type' to: text");
+            password.type = "text";
+            confirmPassword.type = "text";
+
+        } else {
+
+            console.warn("Change input 'type' to: password");
+            password.type = "password";
+            console.warn("Change input 'type' to: confirmPassword");
+            confirmPassword.type = "confirmPassword";
+
+        }
+
+    }
+
+</script>
+<script>
+
+    function myFunction() {
+        alert('Are You sure the data you provide is correct?')
+    }
+
+</script>
 </html>

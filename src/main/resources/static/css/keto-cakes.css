@@ -1,10 +1,10 @@
 /* styles/keto.css */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 10rem auto auto auto;
     padding: 0;
     background: url('../images/keto-background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-size: contain;
     color: #333;
 }
 
@@ -38,7 +38,8 @@ header {
 
 section {
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 20rem 10rem 20rem 10rem;
+    /*margin: 50px auto;*/
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
@@ -70,9 +71,11 @@ h1 {
 
 footer {
     text-align: center;
+    margin-left: -2rem;
+    margin-bottom: -10rem;
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
-    position: relative;
+    position: sticky;
     bottom: 0;
     width: 100%;
 }

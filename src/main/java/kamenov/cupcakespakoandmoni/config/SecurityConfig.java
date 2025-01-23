@@ -32,7 +32,6 @@ public class SecurityConfig {
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll().
                                         requestMatchers("/",
-                                                "/index",
                                                 "/about",
                                                 "/products",
                                                 "/cupcake",

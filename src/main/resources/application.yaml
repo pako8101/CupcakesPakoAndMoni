@@ -15,12 +15,17 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ${db_password}
     username: ${db_username}
-    url: jdbc:mysql://localhost:3306/cupcakes_pako&moni_spring_app?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/cupcakes_pakoAndMoni_spring_app?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
   thymeleaf: # Thymeleaf
     cache: false
     mode: HTML
     encoding: UTF-8
     prefix: file:src/main/resources/templates/
+
+  security:
+    user:
+      name: ""
+      password: ""
 
   web:
     resources:

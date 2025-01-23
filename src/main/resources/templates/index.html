@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/commons::head">
     <title>Кексчетата на Пако и Мони</title></head>
 <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -18,10 +20,12 @@
     <section class="categories">
         <h2>Нашите кексчета</h2>
         <div class="category-grid">
-            <div class="category">
-                <img src="images/keto-cupcake.jpg" alt="Кето кексчета">
-                <h3>Кето</h3>
-            </div>
+            <a th:href="@{/keto-cakes}" class="category-link">
+                <div class="category">
+                    <img src="images/keto-cupcake.jpg" alt="Кето кексчета">
+                    <h3>Кето</h3>
+                </div>
+            </a>
             <div class="category">
                 <img src="images/cream-cupcake.jpg" alt="Кексчета със сметана">
                 <h3>Със сметана</h3>

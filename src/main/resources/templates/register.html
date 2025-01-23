@@ -8,6 +8,7 @@
 <body >
 <div th:replace="fragments/commons::nav"></div>
 
+<div class="registration-form">
 <form  th:method="POST"
        th:action="@{/user/register}"
        th:object="${registerBindingModel}"
@@ -132,7 +133,7 @@
 <!--    <input type="password" placeholder="Confirm Password" required>-->
     <button type="submit">Register</button>
 </form>
-
+</div>
 <footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
 </body>
 

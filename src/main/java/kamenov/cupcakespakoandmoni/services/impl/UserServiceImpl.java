@@ -58,16 +58,17 @@ public class UserServiceImpl implements UserService {
 //                getImage(), user));
 
 
-        user. setFullName(userRegisterBindingModel.getFullName()).
-                setEmail(userRegisterBindingModel.getEmail()).
-                setUsername(userRegisterBindingModel.getUsername()).
-                setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword())
-                );
+//        user. setFullName(userRegisterBindingModel.getFullName()).
+//                setEmail(userRegisterBindingModel.getEmail()).
+//                setUsername(userRegisterBindingModel.getUsername()).
+//                setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword())
+//                );
 
         userRepository.save(user);
 
         UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userRegisterBindingModel.getUsername());
+                userDetailsService.
+                        loadUserByUsername(userRegisterBindingModel.getUsername());
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 userDetails,

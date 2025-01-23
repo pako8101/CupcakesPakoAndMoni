@@ -13,27 +13,44 @@
 </head>
 <body >
 
-<header  th:fragment="nav">
+<header th:class="home-navbar" th:fragment="nav" id="navbar" data-role = "Header">
+    <div class="logged-user"><br>
+<!--        th:text="#{nav_bar_welcome}"-->
+        <a >Welcome,</a>
+        <th:block sec:authentication="name"></th:block>
+        !
+    </div>
     <div th:class="nav-back">
     <nav >
+        <a th:href="@{/}" style="font-weight: bold;
+        margin-left: 18rem"
+           id="logo"
+           class="navbar-logo-title">&copy;PAKO & MONI HOMEMADE CUPCAKES</a>
+        <a th:href="@{/}" style="font-weight: bold;"
+           class="navbar-logo-title"></a>
+        <br/>
+        <span style="font-size: small;margin-left:25rem;
+        text-align: center">DELICIOUS AND HEALTHY FOOD PROJECT</span>
         <ul class="navbar">
-            <li><a href="/">Начало</a></li>
-            <li><a href="/about">За нас</a></li>
-            <li><a href="/products">Кексчета</a></li>
-            <li><a href="/order">Поръчай</a></li>
-            <li><a href="/cart">Кошница</a></li>
-            <li><a href="/user/login">Вход</a></li>
-            <li><a href="/user/register">Регистрация</a></li>
+            <li><a th:href="@{/}">Начало</a></li>
+            <li><a th:href="@{/about}">За нас</a></li>
+            <li><a th:href="@{/products}">Кексчета</a></li>
+            <li><a th:href="@{/order}">Поръчай</a></li>
+            <li><a th:href="@{/cart}">Кошница</a></li>
+            <th:block sec:authorize="!isAuthenticated()">
+            <li><a th:href="@{/user/login}">Вход</a></li>
+            <li><a th:href="@{/user/register}">Регистрация</a></li>
+            </th:block>
         </ul>
     </nav>
     </div>
 </header>
 
 
-<footer th:fragment="footer" id="footer">
+<footer th:fragment="footer" id="footer" class="home-footer">
     <ul>
         <li class="selected">
-            <a th:href="@{/index}">home</a>
+            <a th:href="@{/}">home</a>
         </li>
         <li>
             <a th:href="@{/products}">our cupcakes</a>

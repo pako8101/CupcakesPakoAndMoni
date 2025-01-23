@@ -10,6 +10,7 @@ import kamenov.cupcakespakoandmoni.services.AppUserDetailsService;
 import kamenov.cupcakespakoandmoni.services.RoleService;
 import kamenov.cupcakespakoandmoni.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final UserSession loggedUser;
     private final RoleService roleService;
-
+@Autowired
     public UserServiceImpl(UserRepository userRepository, UserDetailsService userDetailsService,
                            PasswordEncoder passwordEncoder, ModelMapper modelMapper,
                            UserSession loggedUser, RoleService roleService) {
@@ -58,11 +59,11 @@ public class UserServiceImpl implements UserService {
 //                getImage(), user));
 
 
-//        user. setFullName(userRegisterBindingModel.getFullName()).
-//                setEmail(userRegisterBindingModel.getEmail()).
-//                setUsername(userRegisterBindingModel.getUsername()).
-//                setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword())
-//                );
+        user. setFullName(userRegisterBindingModel.getFullName()).
+                setEmail(userRegisterBindingModel.getEmail()).
+                setUsername(userRegisterBindingModel.getUsername()).
+                setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword())
+                );
 
         userRepository.save(user);
 

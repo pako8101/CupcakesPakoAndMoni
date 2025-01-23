@@ -105,6 +105,7 @@ footer {
 
 .zoom-in {
     animation: zoomIn 1s ease-in;
+
 }
 
 @keyframes zoomIn {

@@ -37,8 +37,8 @@ public class SecurityConfig {
                                                 "/cupcake",
                                                 "/delete/**",
                                                 "/edit/**",
-                                                "/user/login-error",
-                                                "/user/login", "/user/register"
+                                                "/users/login-error",
+                                                "/users/login", "/users/register"
 
                                         )
                                         .permitAll()
@@ -46,7 +46,8 @@ public class SecurityConfig {
                                         .requestMatchers("/error").permitAll().
                                         requestMatchers("/pages/admins").hasRole(UserRoleEnum.ADMIN.name()).
                                         requestMatchers("/pages/all").hasRole(UserRoleEnum.USER.name()).
-                                        anyRequest().authenticated()
+                                        anyRequest()
+                                        .authenticated()
 
 
 //                                       requestMatchers("/**").authenticated()
@@ -54,17 +55,17 @@ public class SecurityConfig {
                 .formLogin(
                         (formLogin) ->
                                 formLogin.
-                                        loginPage("/user/login").
+                                        loginPage("/users/login").
                                         usernameParameter(
                                                 UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                                         passwordParameter(
                                                 UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                                         defaultSuccessUrl("/", true).
-                                        failureForwardUrl("/user/login-error")
+                                        failureForwardUrl("/users/login-error")
 
                 )
                 .logout((logout) ->
-                        logout.logoutUrl("/user/logout").
+                        logout.logoutUrl("/users/logout").
                                 logoutSuccessUrl("/").//go to homepage after logout
                                 invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")

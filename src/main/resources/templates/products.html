@@ -2,22 +2,23 @@
 <html lang="bg" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/commons::head">
-    <title>Кексчета - Кексчетата на Пако и Мони</title>
+<head  th:replace="fragments/commons::head">
+    <title>Кексчета - Кексчетата на Пако и Мони</title></head>
     <link rel="stylesheet" href="/css/products.css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/css/reset-css.css">
     <link rel="stylesheet" href="/css/footer.css">
-</head>
+<!--    <link rel="stylesheet" href="/css/index.css">-->
+<div style="margin-top: 1rem" class="navbar" th:replace="fragments/commons::nav"></div>
 <body>
-<div th:replace="fragments/commons::nav"></div>
 
 <main>
-    <section class="products">
+    <section class="products"><br> <br>
         <h1>Видове кексчета</h1>
         <div class="product-grid">
             <div class="product">
-                <img src="images/keto-cupcake.jpg" alt="Кето кексчета" class="zoom-in">
+                <img
+                     src="images/keto-cupcake.jpg" alt="Кето кексчета" class="zoom-in">
                 <h2>Кето</h2>
             </div>
             <div class="product">
@@ -40,8 +41,8 @@
     </section>
 </main>
 
-<footer>
-    <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>
+<footer th:replace="fragments/commons::footer" class="footer">
+
 </footer>
 </body>
 </html>

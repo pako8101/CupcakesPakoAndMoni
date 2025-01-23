@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class RegisterController {
     private final UserService userService;
     private final SecurityContextRepository securityContextRepository;
@@ -72,7 +72,7 @@ public class RegisterController {
                     "org.springframework.validation.BindingResult." +
                             "registerBindingModel", bindingResult);
 
-            return "redirect:/user/register";
+            return "redirect:/users/register";
         }
 
         UserEntity user =

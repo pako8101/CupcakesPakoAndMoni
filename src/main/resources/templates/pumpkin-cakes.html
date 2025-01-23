@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+    <title>Кексчетата на Пако и Мони</title></head>
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/reset-css.css">
+<link rel="stylesheet" href="/css/keto-cakes.css">
+<body >
+<div th:replace="fragments/commons::nav"></div>
+<section>
+    <h1>Pumpkin Cupcakes</h1>
+    <div class="gallery">
+        <img src="images/pumpkin1.jpg" alt="Pumpkin Cupcake 1">
+        <img src="images/pumpkin2.jpg" alt="Pumpkin Cupcake 2">
+        <img src="images/pumpkin3.jpg" alt="Pumpkin Cupcake 3">
+        <img src="images/pumpkin4.jpg" alt="Pumpkin Cupcake 4">
+    </div>
+</section>
+
+</body>
+<footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
+</html>

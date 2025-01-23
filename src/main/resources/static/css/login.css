@@ -86,12 +86,32 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: url('background.jpg') no-repeat center center fixed;
+    background: url('background-login.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #333;
 }
+.login-title{
 
+    animation: flicker 3s infinite; /* Прилагане на анимацията */
+}
+
+@keyframes flicker {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+.login-fill{
+    color: skyblue;
+    animation: flicker 1s infinite; /* Прилагане на анимацията */
+}
+
+@keyframes flicker {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
 .container {
+    margin-top: 5rem;
     text-align: center;
     padding: 50px;
 }

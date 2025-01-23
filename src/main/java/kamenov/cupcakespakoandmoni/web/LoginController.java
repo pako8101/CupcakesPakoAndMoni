@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class LoginController {
     private final UserService userService;
     private final ModelMapper modelMapper;
@@ -50,7 +50,7 @@ public class LoginController {
 
 
 //        redirectAttributes.addFlashAttribute("username", username);
-        return "redirect:/user/login";
+        return "redirect:/users/login";
 //        if (userServiceModel == null) {
 //            redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel());
 //            redirectAttributes.addFlashAttribute("isFound", false);

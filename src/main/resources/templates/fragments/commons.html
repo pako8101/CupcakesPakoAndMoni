@@ -13,14 +13,22 @@
 </head>
 <body >
 
-<header th:class="home-navbar" th:fragment="nav" id="navbar" data-role = "Header">
-    <div class="logged-user"><br>
-<!--        th:text="#{nav_bar_welcome}"-->
-        <a >Welcome,</a>
-        <th:block sec:authentication="name"></th:block>
-        !
+<header class="home-navbar" th:fragment="nav" id="navbar" data-role = "Header">
+    <div style="  margin-top: auto;  margin-left: 1.2rem" class="nav-item">
+
+
+
     </div>
-    <div th:class="nav-back">
+
+    <div class="order-contact">За поръчки: <br><br> <span class="phone">
+            + 359 88 623 6483</span></div>
+    <div class="nav-back">
+        <div class="logged-user"><br>
+            <!--        th:text="#{nav_bar_welcome}"-->
+            <a  th:text="#{nav_bar_welcome}">Welcome,</a>
+            <th:block sec:authentication="name"></th:block>
+            !
+        </div>
     <nav >
         <a th:href="@{/}" style="font-weight: bold;
         margin-left: 18rem"
@@ -28,8 +36,26 @@
            class="navbar-logo-title">&copy;PAKO & MONI HOMEMADE CUPCAKES</a>
         <a th:href="@{/}" style="font-weight: bold;"
            class="navbar-logo-title"></a>
+        <form class="language-bar" th:method="get">
+            <label class="text-white" style="font-size: small"
+                   for="lang" th:text="#{nav_bar_language}">Language</label>
+            <select style="background-color: #e4f0f4;
+                                            border-color: lightgreen"
+                    id="lang"
+                    name="lang"
+                    onchange="this.form.submit()">
+                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English
+                </option>
+                <option value="de_DE" th:selected="${#locale.toString()} == 'de_DE'">German
+                </option>
+                <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български
+                </option>
+            </select>
+
+        </form>
+
         <br/>
-        <span style="font-size: small;margin-left:25rem;
+        <span class="title-under" style="font-size: small;margin-left:25rem;color: mediumblue;
         text-align: center">DELICIOUS AND HEALTHY FOOD PROJECT</span>
         <ul class="navbar">
             <li><a th:href="@{/}">Начало</a></li>
@@ -48,27 +74,46 @@
 
 
 <footer th:fragment="footer" id="footer" class="home-footer">
-    <ul>
-        <li class="selected">
-            <a th:href="@{/}">home</a>
-        </li>
-        <li>
-            <a th:href="@{/products}">our cupcakes</a>
-        </li>
-        <li>
-            <a th:href="@{/history}">history</a>
-        </li>
-        <li>
-            <a th:href="@{/about}">about</a>
-        </li>
-        <li>
-            <a th:href="@{/order}">blog</a>
-        </li>
-        <li>
-            <a th:href="@{/contact}">contact</a>
-        </li>
-    </ul>
-    <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>
+    <h2>Пако и Мони Кексчетата</h2>
+    <p>Най-добрите кексчета за всеки вкус! Опитайте нашите кето, сметанови, шоколадови, плодови и тиквени изкушения.</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" title="Facebook">☆</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">💙</a>
+        <a href="https://twitter.com" target="_blank" title="Twitter">🔗</a>
+    </div>
+    <small>Copyright &copy; 2025 Пако и Мони. Всички права запазени.</small>
+    <a href="#" class="back-to-top" onclick="scrollToTop()">Обратно нагоре</a>
 </footer>
+
+<script>
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
+<!--    <ul>-->
+<!--        <li class="selected">-->
+<!--            <a th:href="@{/}">home</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{/products}">our cupcakes</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{/history}">history</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{/about}">about</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{/order}">blog</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a th:href="@{/contact}">contact</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <p>&copy; 2025 Кексчетата на Пако и Мони. Всички права запазени.</p>-->
+<!--</footer>-->
 </body>
 </html>

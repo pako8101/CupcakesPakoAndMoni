@@ -63,6 +63,7 @@ header {
 }
 
 .categories {
+    margin-top: -4rem;
     padding: 40px 20px;
     text-align: center;
 }
@@ -70,7 +71,7 @@ header {
 .categories h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #ff5722;
+    color: hotpink;
 }
 
 .category-grid {
@@ -97,10 +98,18 @@ header {
     padding: 10px 0;
     font-size: 20px;
     color: #ff5722;
+    border: solid white;
+    border-width: 3px 0;
+}
+.category h3:hover{
+border-bottom-color: #1a1a1a;
 }
 
 .category:hover {
-    transform: scale(1.05);
+    transform: scale(1.10);
+}
+.title-under:hover{
+    border-bottom-color: #4cbbc4;
 }
 
 footer {
@@ -114,25 +123,39 @@ footer {
 
 }
 .navbar-logo-title {
+    display: block;
     color: darkviolet;
     cursor: pointer;
     height: auto;
-    font-size: 24px;
+    font-size: 28px;
     transition: 0.3s;
     font-family: Jost;
     font-weight: 400;
     line-height: 20px;
-    margin: -2rem 54px 12px 54px;
-    /*margin-left: 54px;*/
-    /*margin-right: 54px;*/
-    /*margin-bottom: 12px;*/
+    /*margin: -6.1rem 54px 12px 54px;*/
     letter-spacing: 0.2rem;
     text-decoration: lightseagreen;
     text-shadow: 1px 1px 1px #b0825c,
     2px 2px 1px palegreen;
-    text-align: center;
+    text-align: left;
     place-items: center;
-    animation: flicker 2s infinite; /* Прилагане на анимацията */
+    animation: flicker 3s infinite; /* Прилагане на анимацията */
+}
+.order-contact{
+    text-align: left;
+    color: darkblue;
+font-family: "Franklin Gothic Demi Cond";
+    margin-top: 4rem;
+    margin-left: -65rem;
+    animation: flicker 2s infinite;
+}
+.order-contact .phone{
+    color: #4cbbc4;
+}
+.language-bar{
+margin-top: -1.5rem;
+    /*margin:8rem -35rem auto auto;*/
+    text-align: right;
 }
 
 @keyframes flicker {
@@ -141,7 +164,7 @@ footer {
     100% { opacity: 5; }
 }
 .logged-user{
-    margin: -0.2rem -0.3rem 20px auto;
+    margin: -4.8rem -0.3rem 20px 65rem;
     display: block;
     text-align: right;
     font-family: Karla,Arial,Helvetica,sans-serif;
@@ -153,6 +176,7 @@ footer {
 }
 .home-navbar {
 
+margin-top: -3rem;
     top: 0;
     width: 100%;
     display: flex;

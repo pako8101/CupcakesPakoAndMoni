@@ -1,17 +1,17 @@
-/* styles/cream.css */
+/* styles/chocolate.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Georgia', serif;
     margin: 0;
     padding: 0;
-    background: url('../images/cream-background.jpg') no-repeat center center fixed;
+    background: url('../images/chocolate-background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #333;
+    color: #2e2e2e;
 }
 
 header {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(34, 34, 34, 0.9);
     padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .navbar {
@@ -27,54 +27,54 @@ header {
 
 .navbar a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .navbar a:hover {
-    color: #ff7f50;
+    color: #d2691e;
 }
 
 section {
     max-width: 1200px;
-    margin: 15rem auto 50px auto;
-    background: rgba(255, 255, 255, 0.9);
+    margin:15rem auto 50px auto;
+    background: rgba(34, 34, 34, 0.8);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #ffb6c1;
+    color: #d2691e;
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .gallery img {
-    width: 250px;
+    width: 100%;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .gallery img:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
 }
 
 footer {
     text-align: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(34, 34, 34, 0.9);
+    color: #fff;
     position: relative;
     bottom: 0;
     width: 100%;

@@ -67,6 +67,24 @@
             <li><a th:href="@{/users/login}">Вход</a></li>
             <li><a th:href="@{/users/register}">Регистрация</a></li>
             </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <li>
+                    <form class=" navbar-link"
+                          th:action="@{/users/logout}"  method="post">
+                        <button                            th:text="#{nav_bar_logout}"
+                                                           type="submit" class="navbar-link">
+
+                            <a >LOGOUT</a>
+                        </button>
+                    </form>
+                </li>
+            </th:block>
+<!--            sec:authorize="hasRole('ROLE_ADMIN')"-->
+            <th:block   >
+                <a th:href="@{/cupcakes/add}" th:text="#{nav_bar_add_cupcake}">Add New Cupcake</a>
+<!--                <a-->
+<!--                        th:href="@{/stat}">Statistics</a>-->
+            </th:block>
         </ul>
     </nav>
     </div>

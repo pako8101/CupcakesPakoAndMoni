@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="bg" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+    <title>Кексчетата на Пако и Мони</title></head>
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/reset-css.css">
+<link rel="stylesheet" href="/css/cart.css">
+<body >
+<div th:replace="fragments/commons::nav"></div>
+
+
+<header>
+    <h1>Кошница за покупки</h1>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Кексче</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Общо</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cartItems}">
+            <td th:text="${item.name}"></td>
+            <td>
+                <input type="number" min="1" th:value="${item.quantity}" th:attr="data-id=${item.id}" onchange="updateQuantity(this)">
+            </td>
+            <td th:text="${item.price} + ' лв'"></td>
+            <td th:text="${item.total} + ' лв'"></td>
+            <td>
+<!--                <form th:action="@{/cart/remove}" method="post">-->
+<!--                <input type="hidden" th:value="${item.id}" name="cartItemId" />-->
+<!--                <button type="submit">Remove</button> </form>-->
+                <button th:attr="data-id=${item.id}"
+
+                        onclick="removeFromCart(this)">Премахни</button>
+           </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="cart-summary">
+        <p>Общо: <span th:text="${totalPrice} + ' лв'"></span></p>
+        <button onclick="checkout()">Завърши поръчката</button>
+    </div>
+</main>
+<script src="/js/cart.js"></script>
 
 </body>
+<footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
+
 </html>
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bg"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="~{fragments/commons::head}"></th:block>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/reset-css.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body>
+<div th:replace="fragments/commons::nav"></div>
+
+<main>
+
+    <div class="add-cupcake-form">
+        <h2>Добави ново кексче</h2>
+        <form th:action="@{/cupcakes/add}" method="post">
+            <input type="text" name="name" placeholder="Име на кексчето" required>
+            <textarea name="description" placeholder="Описание" required></textarea>
+            <select name="type" required>
+                <option th:each="type : ${T(com.example.demo.model.CupcakeType).values()}" th:value="${type}" th:text="${type}"></option>
+            </select>
+            <input type="text" name="image" placeholder="URL на изображението" required>
+            <input type="number" name="price" placeholder="Цена" step="0.01" min="0" required>
+            <button type="submit">Добави</button>
+        </form>
+    </div>
+</main>
+
+<footer><div th:replace="fragments/commons::footer" id="footer"></div></footer>
+</body>
+</html>

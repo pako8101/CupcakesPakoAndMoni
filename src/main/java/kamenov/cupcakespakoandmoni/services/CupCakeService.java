@@ -16,4 +16,6 @@ public interface CupCakeService {
     CupCakeEntity getCupcakeById(Long id);
 
     void addCupcake(CupCakeAddDto form);
+
+    void updateStock(Long id, int quantity);
 }

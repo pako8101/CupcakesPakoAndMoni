@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fef9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #ffcccb;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #5e2a2a;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.add-cupcake-container {
+    background: #ffffff;
+    border: 2px solid #ff9999;
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-cupcake-form .form-group {
+    margin-bottom: 15px;
+}
+
+.add-cupcake-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #5e2a2a;
+}
+
+.add-cupcake-form input,
+.add-cupcake-form textarea,
+.add-cupcake-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-cupcake-form textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+.add-cupcake-form .submit-btn {
+    background-color: #ff6666;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.add-cupcake-form .submit-btn:hover {
+    background-color: #e05555;
+}

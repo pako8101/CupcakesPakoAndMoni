@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/css/reset-css.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/add-cake.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <div th:replace="fragments/commons::nav"></div>
@@ -15,16 +17,52 @@
 
     <div class="add-cupcake-form">
         <h2>Добави ново кексче</h2>
-        <form th:action="@{/cupcakes/add}" method="post">
-            <input type="text" name="name" placeholder="Име на кексчето" required>
-            <textarea name="description" placeholder="Описание" required></textarea>
-            <select name="type" required>
-                <option th:each="type : ${T(com.example.demo.model.CupcakeType).values()}" th:value="${type}" th:text="${type}"></option>
-            </select>
-            <input type="text" name="image" placeholder="URL на изображението" required>
-            <input type="number" name="price" placeholder="Цена" step="0.01" min="0" required>
-            <button type="submit">Добави</button>
-        </form>
+        <main>
+            <div class="add-cupcake-container">
+                <form th:action="@{/cupcakes/add}" method="post" class="add-cupcake-form">
+                    <div class="form-group">
+                        <label for="name">Име на кексчето:</label>
+                        <input type="text" id="name" name="name" placeholder="Въведете име" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Описание:</label>
+                        <textarea id="description" name="description" placeholder="Добавете описание" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Тип на кексчето:</label>
+                        <select id="type" name="type" required>
+                            <option th:each="type : ${T(kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum).values()}"
+                                    th:value="${type}" th:text="${type}"></option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">URL на изображението:</label>
+                        <input type="url" id="image" name="image" placeholder="Добавете URL за изображението" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Цена (лв):</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Цена на кексчето" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Наличност:</label>
+                        <input type="number" id="stock" name="stock" min="1" placeholder="Начална наличност" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Добави Кексче</button>
+                </form>
+            </div>
+        </main>
+<!--        <form th:action="@{/cupcakes/add}" method="post">-->
+<!--            <input type="text" name="name" placeholder="Име на кексчето" required>-->
+<!--            <textarea name="description" placeholder="Описание" required></textarea>-->
+<!--            <select name="type" required>-->
+<!--                <option th:each="type :
+${T(kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum).values()}" th:value="${type}" th:text="${type}"></option>-->
+<!--            </select>-->
+<!--            <input type="text" name="image" placeholder="URL на изображението" required>-->
+<!--            <input type="number" name="price" placeholder="Цена" step="0.01" min="0" required>-->
+<!--            <button type="submit">Добави</button>-->
+<!--        </form>-->
     </div>
 </main>
 

@@ -43,8 +43,23 @@ public class CupCakeServiceImpl implements CupCakeService {
 @Override
     public void addCupcake(CupCakeAddDto form) {
         long newId = cupcakes.stream().mapToLong(CupCakeEntity::getId).max().orElse(0L) + 1;
-        CupCakeEntity newCupcake = new CupCakeEntity( form.getName(), form.getDescription(),
-                form.getImage(), form.getPrice(), form.getType(),form.getQuantity());
+        CupCakeEntity newCupcake = new CupCakeEntity(
+                form.getName(),
+                form.getDescription(),
+                form.getImage(),
+                form.getPrice(),
+                form.getType(),
+                form.getQuantity());
         cupcakes.add(newCupcake);
+        cupCakeRepository.save(newCupcake);
+    }
+
+@Override
+    public void updateStock(Long id, int quantity) {
+        CupCakeEntity cupcake = getCupcakeById(id);
+        if (cupcake != null && cupcake.getQuantity() >= quantity) {
+            cupcake.setQuantity(cupcake.getQuantity() - quantity);
+            cupCakeRepository.save(cupcake);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package kamenov.cupcakespakoandmoni.services.impl;
 
+import jakarta.validation.constraints.Negative;
+import kamenov.cupcakespakoandmoni.exceptions.ObjectNotFoundException;
 import kamenov.cupcakespakoandmoni.models.CupCakeEntity;
 import kamenov.cupcakespakoandmoni.models.dtos.CupCakeAddDto;
 import kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum;
@@ -16,11 +18,11 @@ public class CupCakeServiceImpl implements CupCakeService {
     private final CupCakeRepository cupCakeRepository;
 
     private List<CupCakeEntity> cupcakes = new ArrayList<>(List.of(
-            new CupCakeEntity( "Кето Кексче", "Вкусно и здравословно",
+            new CupCakeEntity(5L,"Кето Кексче", "Вкусно и здравословно",
                     "/images/keto.jpg",3.50, CupCakeTypeEnum.KETO, 5),
-            new CupCakeEntity( "Шоколадово Кексче", "С богат шоколадов вкус",
+            new CupCakeEntity( 6L,"Шоколадово Кексче", "С богат шоколадов вкус",
                     "/images/chocolate.jpg", 4.00,CupCakeTypeEnum.CHOCOLATE,10),
-            new CupCakeEntity( "Плодово Кексче", "С пресни плодове",
+            new CupCakeEntity( 7L,"Плодово Кексче", "С пресни плодове",
                     "/images/fruit.jpg", 3.80,CupCakeTypeEnum.FRUITY,10)
     ));
 
@@ -30,7 +32,7 @@ public class CupCakeServiceImpl implements CupCakeService {
 
     @Override
     public List<CupCakeEntity> getAllCupcakes() {
-        return cupcakes;
+        return cupCakeRepository.findAll().stream().toList();
     }
 @Override
     public List<CupCakeEntity> getCupcakesByType(CupCakeTypeEnum type) {
@@ -44,6 +46,7 @@ public class CupCakeServiceImpl implements CupCakeService {
     public void addCupcake(CupCakeAddDto form) {
         long newId = cupcakes.stream().mapToLong(CupCakeEntity::getId).max().orElse(0L) + 1;
         CupCakeEntity newCupcake = new CupCakeEntity(
+newId,
                 form.getName(),
                 form.getDescription(),
                 form.getImage(),
@@ -56,10 +59,17 @@ public class CupCakeServiceImpl implements CupCakeService {
 
 @Override
     public void updateStock(Long id, int quantity) {
-        CupCakeEntity cupcake = getCupcakeById(id);
+        CupCakeEntity cupcake = cupCakeRepository.findById(id).orElseThrow(NoSuchElementException::new);
         if (cupcake != null && cupcake.getQuantity() >= quantity) {
             cupcake.setQuantity(cupcake.getQuantity() - quantity);
             cupCakeRepository.save(cupcake);
         }
+    }
+
+    @Override
+    public CupCakeEntity findCupcakeById(Long id) {
+        return cupCakeRepository.findById(id)
+                .orElseThrow(()->
+                        new ObjectNotFoundException("No such cupcake with "+ id,id));
     }
 }

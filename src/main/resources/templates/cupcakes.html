@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <link rel="stylesheet" href="/css/reset-css.css">
 <link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/cupcakes.css">
 <!--    <link rel="stylesheet" href="/css/index.css">-->
 <div style="margin-top: 1rem" class="navbar" th:replace="fragments/commons::nav"></div>
 <body>
@@ -18,11 +19,11 @@
         <h3 th:text="${cupcake.name} + ' (' + cupcake.type + ')'"></h3>
         <p th:text="${cupcake.description}"></p>
         <p>Цена: <span th:text="${cupcake.price} + ' лв'"></span></p>
-        <p>Наличност: <span th:text="${cupcake.stock}"></span></p>
+        <p>Наличност: <span th:text="${cupcake.quantity}"></span></p>
         <form th:action="@{/cart/add}" method="post">
             <input type="hidden" name="id" th:value="${cupcake.id}">
             <input type="number" name="quantity" min="1" max="10" value="1">
-            <button type="submit" th:disabled="${cupcake.stock == 0}">Купи</button>
+            <button type="submit" th:disabled="${cupcake.quantity == 0}">Купи</button>
         </form>
     </div>
 </div>

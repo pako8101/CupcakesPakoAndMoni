@@ -18,4 +18,6 @@ public interface CupCakeService {
     void addCupcake(CupCakeAddDto form);
 
     void updateStock(Long id, int quantity);
+
+    CupCakeEntity findCupcakeById(Long id);
 }

@@ -9,7 +9,7 @@ header {
     text-align: center;
     background-color: #ffcccb;
     padding: 20px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #5e2a2a;
 }
@@ -23,7 +23,7 @@ main {
 
 .add-cupcake-container {
     background: #ffffff;
-    border: 2px solid #ff9999;
+    border: 3px solid #ff9999;
     border-radius: 12px;
     padding: 20px;
     width: 400px;
@@ -40,7 +40,10 @@ main {
     margin-bottom: 5px;
     color: #5e2a2a;
 }
-
+.title-add-form{
+    color: indianred !important;
+    text-align: center;
+}
 .add-cupcake-form input,
 .add-cupcake-form textarea,
 .add-cupcake-form select {
@@ -70,4 +73,29 @@ main {
 
 .add-cupcake-form .submit-btn:hover {
     background-color: #e05555;
+
+}
+
+.add-cupcake-form{
+    margin-top: 8.5rem;
+
+
+}
+.home-navbar{
+    margin-top: -2.5rem;
+}
+.nav-back{
+    position: absolute;
+margin-top: 0.3rem;
+
+}
+.logged-user{
+    margin-top: 1.2rem;
+    margin-left: 600px;
+}
+.navbar-logo-title{
+    margin-top: -3rem;
+}
+.language-bar{
+    margin-left: 1.5rem;
 }

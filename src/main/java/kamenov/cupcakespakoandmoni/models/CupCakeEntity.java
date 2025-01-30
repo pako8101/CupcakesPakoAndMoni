@@ -6,7 +6,10 @@ import kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum;
 
 @Entity
 @Table(name = "cup_cake")
-public class CupCakeEntity extends BaseEntity {
+public class CupCakeEntity  {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
         @Column(nullable = false, unique = true,name = "name", length = 50)
         private String name;
@@ -29,14 +32,23 @@ public class CupCakeEntity extends BaseEntity {
         public CupCakeEntity() {
         }
 
-        public CupCakeEntity(String name, String description, String image,
-                             double price, CupCakeTypeEnum type, Integer quantity) {
+        public CupCakeEntity(Long id, String name, String description, String image, double price, CupCakeTypeEnum type, Integer quantity) {
+                this.id = id;
                 this.name = name;
                 this.description = description;
                 this.image = image;
                 this.price = price;
                 this.type = type;
                 this.quantity = quantity;
+        }
+
+        public Long getId() {
+                return id;
+        }
+
+        public CupCakeEntity setId(Long id) {
+                this.id = id;
+                return this;
         }
 
         public CupCakeTypeEnum getType() {

@@ -2,11 +2,12 @@ body {
     font-family: Arial, sans-serif;
     background: #f9f9f9;
     color: #333;
+
 }
 
 header {
-    margin-top: 10rem;
-    background: violet;
+    margin-top: 11rem;
+    background: sandybrown;
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -21,8 +22,9 @@ table {
 
 table th, table td {
     padding: 15px;
+    background-color: #fad0c4;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .cart-summary {

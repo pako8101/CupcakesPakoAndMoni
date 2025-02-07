@@ -17,11 +17,11 @@
     <h1>Кошница за покупки</h1>
 </header>
 <main>
-    <h1 class="cart-title">Your Cart</h1>
-    <div th:if="${cartItems == null} or ${cartItems.isEmpty()}">
+        <div th:if="${cartItems == null} or ${cartItems.isEmpty()}">
         <p th:text="${message}">Your cart is empty.</p>
     </div>
-    <table th:if="${cartItems != null} and ${!cartItems.isEmpty()}">
+<!--    th:if="${cartItems != null} and ${!cartItems.isEmpty()}"-->
+    <table >
         <thead>
         <tr>
             <th>Кексче</th>

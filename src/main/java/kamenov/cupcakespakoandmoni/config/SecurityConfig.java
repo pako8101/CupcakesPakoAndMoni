@@ -34,15 +34,14 @@ public class SecurityConfig {
                                         requestMatchers("/",
                                                 "/about",
                                                 "/products",
-                                                "/cupcake",
                                                 "/delete/**",
                                                 "/edit/**",
                                                 "/users/login-error",
-                                                "cart/**",
                                                 "/users/login", "/users/register"
 
                                         )
                                         .permitAll()
+                                        .requestMatchers("/cart/**").authenticated()
 //                                        .anyRequest().authenticated().
                                         .requestMatchers("/error").permitAll().
                                         requestMatchers("/pages/admins").hasRole(UserRoleEnum.ADMIN.name()).

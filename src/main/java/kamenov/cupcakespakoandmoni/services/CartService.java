@@ -1,5 +1,6 @@
 package kamenov.cupcakespakoandmoni.services;
 
+import jakarta.transaction.NotSupportedException;
 import kamenov.cupcakespakoandmoni.models.ShoppingBasket;
 import kamenov.cupcakespakoandmoni.models.ShoppingCartItem;
 import kamenov.cupcakespakoandmoni.models.UserEntity;
@@ -16,7 +17,7 @@ public interface CartService {
 
     ShoppingBasket createNewBasketForUser(UserEntity user);
 
-    void addToCart(UserEntity user, Long cupcakeId, int quantity);
+    void addToCart(UserEntity user, Long cupcakeId, int quantity) throws NotSupportedException;;
 
     void removeFromCart(Long id);
 

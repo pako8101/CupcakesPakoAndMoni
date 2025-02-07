@@ -40,7 +40,7 @@ public CupCakeAddDto getCupCakeAddDto() {
 
 
 
-    @GetMapping
+    @GetMapping("/all")
     public String getAllCupcakes(Model model) {
         model.addAttribute("cupcakes", cupcakeService.getAllCupcakes());
         return "cupcakes";
@@ -77,7 +77,7 @@ public String addCupcake(Model model) {
 
     cupcakeService.addCupcake(cupCakeAddDto);
     model.addAttribute("message", "Cupcake added");
-        return "redirect:/cupcakes";
+        return "redirect:/cupcakes/all";
     }
 
 //    @PostMapping("/cart/add")

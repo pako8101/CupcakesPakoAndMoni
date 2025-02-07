@@ -3,6 +3,7 @@ package kamenov.cupcakespakoandmoni.web;
 import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.Transactional;
 import kamenov.cupcakespakoandmoni.exceptions.EmptyBasketException;
+import kamenov.cupcakespakoandmoni.exceptions.EmptyCartException;
 import kamenov.cupcakespakoandmoni.models.CupCakeEntity;
 import kamenov.cupcakespakoandmoni.models.ShoppingBasket;
 import kamenov.cupcakespakoandmoni.models.ShoppingCartItem;
@@ -34,18 +35,30 @@ public class CartController {
         this.cupCakeService = cupCakeService;
         this.cartService = cartService;
     }
-
+    @ModelAttribute("cart")
+    public ShoppingBasket getCart() {
+        return new ShoppingBasket();
+    }
     @GetMapping
     public String viewCart(Model model,@AuthenticationPrincipal UserEntity user) {
         ShoppingBasket cart = cartService.getActiveCartForUser(user);
-
         List<ShoppingCartItem> items = cartService.getCartItems();
-        if (items.isEmpty()) {
-            model.addAttribute("cartEmpty", true);
-        } else {
+        try {
+
             model.addAttribute("cartItems", items);
             model.addAttribute("totalPrice", cartService.calculateTotal());
+        } catch (EmptyBasketException e) {
+            model.addAttribute("cartEmpty", true);
         }
+//
+//
+//        List<ShoppingCartItem> items = cartService.getCartItems();
+//        if (items.isEmpty()) {
+//            model.addAttribute("cartEmpty", true);
+//        } else {
+//            model.addAttribute("cartItems", items);
+//            model.addAttribute("totalPrice", cartService.calculateTotal());
+//        }
 //        List<ShoppingCartItem> cartItems = cartService.getActiveCartForUser(user).getItems();
 //        if (cartItems == null) {
 //            cartItems = new ArrayList<>();
@@ -74,14 +87,13 @@ public class CartController {
 
         // ------
         model.addAttribute("cart", cart);
-        model.addAttribute("cartItems", cartService.getCartItems());
+        model.addAttribute("cartItems", items);
         model.addAttribute("totalPrice", cartService.calculateTotal());
-        return "cart";
+        return "/cart";
     }
-
+@Transactional
     @PostMapping("/add/{id}")
     public String addToCart(@AuthenticationPrincipal UserEntity user,
-                            @ModelAttribute ShoppingCartItem item,
                             @PathVariable("id") Long cupcakeId,
                             @RequestParam(defaultValue = "1")int quantity) throws NotSupportedException {
 //        CupCakeEntity cupcake = cupCakeService.getCupcakeById(cupcakeId);
@@ -94,8 +106,11 @@ public class CartController {
 //            item.setQuantity(cupcake.getQuantity());
 //            cartService.addToCart(item);
 //        }
+    if( user == null){
+       return "redirect:/users/login";
+    }
         cartService.addToCart(user,cupcakeId,quantity);
-        return "redirect:/cart";
+        return "redirect:/cupcakes/all";
     }
 @Transactional
     @PostMapping("/remove/{id}")
@@ -103,4 +118,9 @@ public class CartController {
         cartService.removeFromCart(id);
         return "redirect:/cart";
     }
-}
+    @ExceptionHandler(EmptyCartException.class)
+    public String handleEmptyCartException(EmptyCartException ex, Model model) {
+        model.addAttribute("message", ex.getMessage());
+        return "/cart-view";
+    }
+    }

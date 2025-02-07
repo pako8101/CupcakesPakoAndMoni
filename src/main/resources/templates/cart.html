@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <link rel="stylesheet" href="/css/reset-css.css">
 <link rel="stylesheet" href="/css/cart.css">
+
+
 <body >
 <div th:replace="fragments/commons::nav"></div>
 
@@ -15,14 +17,18 @@
     <h1>Кошница за покупки</h1>
 </header>
 <main>
-    <table>
+    <h1 class="cart-title">Your Cart</h1>
+    <div th:if="${cartItems == null} or ${cartItems.isEmpty()}">
+        <p th:text="${message}">Your cart is empty.</p>
+    </div>
+    <table th:if="${cartItems != null} and ${!cartItems.isEmpty()}">
         <thead>
         <tr>
             <th>Кексче</th>
             <th>Количество</th>
             <th>Цена</th>
             <th>Общо</th>
-            <th>Действие</th>
+            <th>Дата за доставка</th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +47,7 @@
 
                         onclick="removeFromCart(this)">Премахни</button>
            </td>
+            <td>Delivery date <strong th:text="${futureDate}"> 26.09.2024</strong></td>
 
         </tr>
         </tbody>

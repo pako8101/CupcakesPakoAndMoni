@@ -4,6 +4,7 @@
        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}" />
     <meta charset="UTF-8">
     <title>Кексчетата на Пако и Мони</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">

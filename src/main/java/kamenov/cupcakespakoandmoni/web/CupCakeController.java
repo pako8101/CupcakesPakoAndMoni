@@ -80,39 +80,40 @@ public String addCupcake(Model model) {
         return "redirect:/cupcakes";
     }
 
-    @PostMapping("/cart/add")
-    public String addToCart(@RequestParam Long id, @RequestParam int quantity) {
-        CupCakeEntity cupcake = cupcakeService.getCupcakeById(id);
-//        if (cupcake != null && cupcake.getQuantity() >= quantity) {
-//            ShoppingCartItem item = new ShoppingCartItem();
-//            item.setId(cupcake.getId());
-//            item.setName(cupcake.getName());
-//            item.setType(cupcake.getType());
-//            item.setPrice(cupcake.getPrice());
-//            item.setQuantity(quantity);
-//            cartService.addToCart(item);
-//            cupcakeService.updateStock(id, quantity);
-            if (cupcake != null) {
-                if (cupcake.getQuantity() >= quantity) { // ???????? ?? ?????????
-                    ShoppingCartItem item = new ShoppingCartItem();
-                    item.setId(cupcake.getId());
-                    item.setName(cupcake.getName());
-                    item.setType(cupcake.getType());
-                    item.setPrice(cupcake.getPrice());
-                    item.setQuantity(quantity);
-
-                    cartService.addToCart(item);
-
-                    // ?????????? ?? ???????????
-                    cupcakeService.updateStock(id, cupcake.getQuantity() - quantity);
-                } else {
-
-                    return "redirect:/cupcakes?error=???? ?????????? ?????????!";
-                }
-
-        }
-        return "redirect:/cart";
-    }
+//    @PostMapping("/cart/add")
+//    public String addToCart(@RequestParam Long id,
+//                            @RequestParam int quantity) {
+//        CupCakeEntity cupcake = cupcakeService.getCupcakeById(id);
+////        if (cupcake != null && cupcake.getQuantity() >= quantity) {
+////            ShoppingCartItem item = new ShoppingCartItem();
+////            item.setId(cupcake.getId());
+////            item.setName(cupcake.getName());
+////            item.setType(cupcake.getType());
+////            item.setPrice(cupcake.getPrice());
+////            item.setQuantity(quantity);
+////            cartService.addToCart(item);
+////            cupcakeService.updateStock(id, quantity);
+//            if (cupcake != null) {
+//                if (cupcake.getQuantity() >= quantity) { // ???????? ?? ?????????
+//                    ShoppingCartItem item = new ShoppingCartItem();
+//                    item.setId(cupcake.getId());
+//                    item.setName(cupcake.getName());
+//                    item.setType(cupcake.getType());
+//                    item.setPrice(cupcake.getPrice());
+//                    item.setQuantity(quantity);
+//
+//                    cartService.addToCart(item);
+//
+//                    // ?????????? ?? ???????????
+//                    cupcakeService.updateStock(id, cupcake.getQuantity() - quantity);
+//                } else {
+//
+//                    return "redirect:/cupcakes";
+//                }
+//
+//        }
+//        return "redirect:/cart";
+//    }
 //    @PostMapping("/updateStock")
 //    public String updateStock(@RequestParam Long id, @RequestParam int stock) {
 //        cupcakeService.updateStock(id, stock);

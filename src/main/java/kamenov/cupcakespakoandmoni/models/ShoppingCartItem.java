@@ -1,13 +1,17 @@
 package kamenov.cupcakespakoandmoni.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum;
 
 @Entity
-@Table(name = "cart")
+@Table(name = "cart_item")
 public class ShoppingCartItem extends BaseEntity{
-
+@ManyToOne
+    private CupCakeEntity cupCakeEntity;
+@ManyToOne
+private ShoppingBasket basket;
     private String name;
     private int quantity;
     private double price;
@@ -18,6 +22,24 @@ public class ShoppingCartItem extends BaseEntity{
     }
 
     public ShoppingCartItem() {
+    }
+
+    public CupCakeEntity getCupCakeEntity() {
+        return cupCakeEntity;
+    }
+
+    public ShoppingCartItem setCupCakeEntity(CupCakeEntity cupCakeEntity) {
+        this.cupCakeEntity = cupCakeEntity;
+        return this;
+    }
+
+    public ShoppingBasket getBasket() {
+        return basket;
+    }
+
+    public ShoppingCartItem setBasket(ShoppingBasket basket) {
+        this.basket = basket;
+        return this;
     }
 
     public CupCakeTypeEnum getType() {

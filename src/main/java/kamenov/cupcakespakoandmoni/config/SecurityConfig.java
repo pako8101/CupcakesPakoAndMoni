@@ -38,6 +38,7 @@ public class SecurityConfig {
                                                 "/delete/**",
                                                 "/edit/**",
                                                 "/users/login-error",
+                                                "cart/**",
                                                 "/users/login", "/users/register"
 
                                         )

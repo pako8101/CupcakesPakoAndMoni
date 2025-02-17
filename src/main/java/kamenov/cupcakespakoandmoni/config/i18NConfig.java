@@ -14,6 +14,11 @@ import java.util.Locale;
 public class i18NConfig {
     @Bean
     public LocaleResolver localeResolver() {
+//        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+//        localeResolver.setCookieName("lang");
+//        localeResolver.setDefaultLocale(Locale.ENGLISH); // По подразбиране английски
+//        localeResolver.setCookieMaxAge(3600);
+//        return localeResolver;
         return new CookieLocaleResolver("lang");
     }
 
@@ -27,7 +32,10 @@ public class i18NConfig {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:i18N/messages");
+        messageSource.setBasenames("classpath:i18N/messages",
+                "classpath:i18N/messages_en", "classpath:i18N/messages_bg");
+
+        //messageSource.setBasename("classpath:i18N/messages");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setDefaultLocale(Locale.ENGLISH);
         return messageSource;

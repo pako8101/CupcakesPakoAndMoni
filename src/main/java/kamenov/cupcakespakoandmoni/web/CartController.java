@@ -25,7 +25,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 @RequestMapping("/cart")
-@SessionAttributes("cartItems")
+
 public class CartController {
     private final CupCakeService cupCakeService;
 
@@ -35,6 +35,11 @@ public class CartController {
         this.cupCakeService = cupCakeService;
         this.cartService = cartService;
     }
+    @ModelAttribute
+    public ShoppingCartItem getItem() {
+        return new ShoppingCartItem();
+
+    }
     @ModelAttribute("cart")
     public ShoppingBasket getCart() {
         return new ShoppingBasket();
@@ -42,16 +47,22 @@ public class CartController {
     @GetMapping
     public String viewCart(Model model,@AuthenticationPrincipal UserEntity user) {
         ShoppingBasket cart = cartService.getActiveCartForUser(user);
-        List<ShoppingCartItem> items = cartService.getCartItems();
-        try {
 
-            model.addAttribute("cartItems", items);
-            model.addAttribute("totalPrice", cartService.calculateTotal());
-        } catch (EmptyBasketException e) {
-            model.addAttribute("cartEmpty", true);
+        List<ShoppingCartItem> cartItems = cartService.getCartItems(user);
+        if (cartItems == null){
+            cartItems = new ArrayList<>();
         }
+        if (cartItems.isEmpty()){
+            throw new EmptyCartException("Your cart is empty");
+        }
+
+//        try {
 //
-//
+//            model.addAttribute("cartItems", items);
+//            model.addAttribute("totalPrice", cartService.calculateTotal());
+//        } catch (EmptyBasketException e) {
+//            model.addAttribute("cartEmpty", true);
+//        }
 //        List<ShoppingCartItem> items = cartService.getCartItems();
 //        if (items.isEmpty()) {
 //            model.addAttribute("cartEmpty", true);
@@ -74,20 +85,13 @@ public class CartController {
 //       add date -----
         LocalDate currentDate = LocalDate.now();
 
-        // ?????? 10 ???
         LocalDate futureDate = currentDate.plusDays(10);
 
-        // ??????????? ?? ?????? ?? ??????? (?? ? ????????????)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = futureDate.format(formatter);
-
-        // ???????? ?? ?????? ??? Thymeleaf
         model.addAttribute("futureDate", formattedDate);
-
-
-        // ------
         model.addAttribute("cart", cart);
-        model.addAttribute("cartItems", items);
+        model.addAttribute("cartItems", cartItems);
         model.addAttribute("totalPrice", cartService.calculateTotal());
         return "/cart";
     }
@@ -96,21 +100,15 @@ public class CartController {
     public String addToCart(@AuthenticationPrincipal UserEntity user,
                             @PathVariable("id") Long cupcakeId,
                             @RequestParam(defaultValue = "1")int quantity) throws NotSupportedException {
-//        CupCakeEntity cupcake = cupCakeService.getCupcakeById(cupcakeId);
-//        if (cupcake != null) {
-//            item = new ShoppingCartItem();
-//            item.setId(cupcake.getId());
-//            item.setName(cupcake.getName());
-//            item.setType(cupcake.getType());
-//            item.setPrice(cupcake.getPrice());
-//            item.setQuantity(cupcake.getQuantity());
-//            cartService.addToCart(item);
-//        }
-    if( user == null){
-       return "redirect:/users/login";
-    }
-        cartService.addToCart(user,cupcakeId,quantity);
-        return "redirect:/cupcakes/all";
+    cartService.addToCart(user, cupcakeId, quantity);
+//    CupCakeEntity cupCake = cupCakeService.findCupcakeById(cupcakeId);
+//    if (cupCake != null && cupCake.getQuantity() >= quantity) {
+//
+//
+//    }
+
+
+    return "redirect:/cart";
     }
 @Transactional
     @PostMapping("/remove/{id}")
@@ -121,6 +119,6 @@ public class CartController {
     @ExceptionHandler(EmptyCartException.class)
     public String handleEmptyCartException(EmptyCartException ex, Model model) {
         model.addAttribute("message", ex.getMessage());
-        return "/cart-view";
+        return "/cart";
     }
     }

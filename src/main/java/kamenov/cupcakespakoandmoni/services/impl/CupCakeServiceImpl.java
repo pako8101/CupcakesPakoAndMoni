@@ -64,7 +64,6 @@ public class CupCakeServiceImpl implements CupCakeService {
             throw new IllegalArgumentException("User ID cannot be null");
         }
         cupCake.setId(null);
-
         cupCake.setQuantity(form.getQuantity());
         cupCake.setDescription(form.getDescription());
         cupCake.setName(form.getName());

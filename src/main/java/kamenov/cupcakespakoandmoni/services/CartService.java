@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface CartService {
-    List<ShoppingCartItem> getCartItems();
+   // List<ShoppingCartItem> getCartItems();
 
    // void addToCart(ShoppingCartItem item);
+
+    List<ShoppingCartItem> getCartItems(UserEntity user);
 
     ShoppingBasket getActiveCartForUser(UserEntity user);
 

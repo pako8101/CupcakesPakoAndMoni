@@ -2,12 +2,16 @@ package kamenov.cupcakespakoandmoni.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "shopping_basket")
-public class ShoppingBasket extends BaseEntity {
+public class ShoppingBasket extends BaseEntity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @OneToMany(
             cascade = CascadeType.ALL,

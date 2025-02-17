@@ -5,9 +5,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import kamenov.cupcakespakoandmoni.models.enums.CupCakeTypeEnum;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "cart_item")
-public class ShoppingCartItem extends BaseEntity{
+public class ShoppingCartItem extends BaseEntity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 @ManyToOne
     private CupCakeEntity cupCakeEntity;
 @ManyToOne
@@ -17,12 +22,15 @@ private ShoppingBasket basket;
     private double price;
     private CupCakeTypeEnum type;
 
+
     public double getTotal() {
         return quantity * price;
     }
 
     public ShoppingCartItem() {
     }
+
+
 
     public CupCakeEntity getCupCakeEntity() {
         return cupCakeEntity;

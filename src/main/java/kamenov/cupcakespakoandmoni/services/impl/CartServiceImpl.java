@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,9 +28,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<ShoppingCartItem> getCartItems() {
+    public List<ShoppingCartItem> getCartItems(UserEntity user) {
+        return basketRepository.findByUserEntityAndCompletedFalse(user)
+                .map(ShoppingBasket::getItems)
+                .orElse(new ArrayList<>());
 
-            return cartItems != null ? cartItems : new ArrayList<>();
+           // return cartItems != null ? cartItems : new ArrayList<>();
     }
     @Override
     public ShoppingBasket getActiveCartForUser(UserEntity user) {
@@ -44,19 +46,48 @@ public ShoppingBasket createNewBasketForUser(UserEntity user) {
     basket.setUserEntity(user);
     return basketRepository.save(basket);
     }
-
     @Override
     public void addToCart(UserEntity user, Long cupcakeId, int quantity) {
-    ShoppingBasket basket = getActiveCartForUser(user);
+        ShoppingBasket basket = getActiveCartForUser(user);
         CupCakeEntity cupCake = cupCakeService.findCupcakeById(cupcakeId);
-        ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
-        shoppingCartItem.setQuantity(quantity);
-        shoppingCartItem.setCupCakeEntity(cupCake);
-        shoppingCartItem.setBasket(basket);
-    cartRepository.save(shoppingCartItem);
-    basket.getItems().add(shoppingCartItem);
-    basketRepository.save(basket);
+
+        Optional<ShoppingCartItem> existingItem = basket.getItems().stream()
+                .filter(item -> item.getCupCakeEntity().getId().equals(cupcakeId))
+                .findFirst();
+
+        if (existingItem.isPresent()) {
+            existingItem.get().setQuantity(existingItem.get().getQuantity() + quantity);
+            cartRepository.save(existingItem.get());
+        } else {
+            ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+            shoppingCartItem.setQuantity(quantity);
+            shoppingCartItem.setCupCakeEntity(cupCake);
+            shoppingCartItem.setBasket(basket);
+            cartRepository.save(shoppingCartItem);
+            basket.getItems().add(shoppingCartItem);
+        }
+
+        basketRepository.save(basket);
     }
+
+
+    //    @Override
+//    public void addToCart(UserEntity user, Long cupcakeId, int quantity) {
+//    ShoppingBasket basket = getActiveCartForUser(user);
+//        CupCakeEntity cupCake = cupCakeService.findCupcakeById(cupcakeId);
+//
+//            ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+//            shoppingCartItem.setQuantity(quantity);
+//            shoppingCartItem.setCupCakeEntity(cupCake);
+//            shoppingCartItem.setBasket(basket);
+//            shoppingCartItem.getTotal();
+//            cartRepository.save(shoppingCartItem);
+//            basket.getItems().add(shoppingCartItem);
+//            basketRepository.save(basket);
+//
+//
+//
+//    }
 @Override
     public void removeFromCart(Long id) {
         cartItems.removeIf(item -> item.getId()==(id));
